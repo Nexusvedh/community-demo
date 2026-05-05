@@ -27,6 +27,26 @@
       border-radius: 12px;
     }
 
+    input {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px;
+      width: 85%;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: #3b82f6;
+      color: white;
+    }
+
     .status {
       margin-top: 20px;
       font-size: 20px;
@@ -45,43 +65,44 @@
 </header>
 
 <div class="card">
-  <div class="status" id="output">Loading...</div>
+
+  <input id="villaInput" placeholder="Enter Villa Number (1–199)" />
+  <button onclick="checkVilla()">Find Route</button>
+
+  <div class="status" id="output"></div>
+
 </div>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  let villa = params.get("villa");
+  function checkVilla() {
+    let villa = document.getElementById("villaInput").value;
+    const output = document.getElementById("output");
 
-  const output = document.getElementById("output");
+    const MIN = 1;
+    const MAX = 199;
 
-  const MIN = 1;
-  const MAX = 199;
+    if (!villa) {
+      output.className = "status error";
+      output.innerText = "❌ No villa entered";
+      return;
+    }
 
-  // 🧠 Step 1: No input
-  if (!villa) {
-    output.className = "status error";
-    output.innerText = "❌ No villa selected";
-  }
+    if (!/^[0-9]+$/.test(villa)) {
+      output.className = "status error";
+      output.innerText = "❌ Invalid format (numbers only)";
+      return;
+    }
 
-  // 🧠 Step 2: Must be ONLY numbers (no letters/symbols)
-  else if (!/^[0-9]+$/.test(villa)) {
-    output.className = "status error";
-    output.innerText = "❌ Invalid format (numbers only)";
-  }
-
-  else {
     villa = Number(villa);
 
-    // 🧠 Step 3: Range check
     if (villa < MIN || villa > MAX) {
       output.className = "status error";
       output.innerText = "❌ Villa does not exist";
+      return;
     }
 
-    else {
-      output.className = "status ok";
-      output.innerText = "🚚 Route ready for Villa " + villa;
-    }
+    output.className = "status ok";
+    output.innerText = "🚚 Route ready for Villa " + villa;
   }
 </script>
 
