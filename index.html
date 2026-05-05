@@ -25,6 +25,7 @@
       width: 100%;
       max-height: 220px;
       object-fit: cover;
+      display: block;
     }
 
     .container {
@@ -56,6 +57,7 @@
       font-size: 16px;
       background: #3b82f6;
       color: white;
+      cursor: pointer;
     }
 
     .status {
@@ -66,7 +68,7 @@
     .error { color: #f87171; }
     .ok { color: #4ade80; }
 
-    /* 🗺️ hidden map */
+    /* 🗺️ MAP BOX */
     #mapBox {
       display: none;
       margin-top: 20px;
@@ -85,12 +87,12 @@
   🏠 Libdom Villas Navigation System
 </header>
 
-<!-- 🖼️ HERO IMAGE (NOT MAP) -->
+<!-- 🖼️ HERO IMAGE -->
 <img class="hero" src="libdom.jpg" alt="Libdom Villas">
 
 <div class="container">
 
-  <!-- INPUT -->
+  <!-- INPUT CARD -->
   <div class="card">
 
     <h3>Enter Villa Number</h3>
@@ -103,15 +105,15 @@
 
   </div>
 
-  <!-- 🗺️ MAP (only after valid input) -->
+  <!-- 🗺️ MAP -->
   <div id="mapBox">
     <h3>Navigation Map</h3>
-    <img src="libdom.jpg" alt="Map">
+    <img src="map.jpg" alt="Map">
   </div>
 
 </div>
 
-<!-- 🧠 SCRIPT AT BOTTOM -->
+<!-- 🧠 SCRIPT -->
 <script>
   function checkVilla() {
     const villa = document.getElementById("villaInput").value.trim();
@@ -122,7 +124,8 @@
       "1","2","3",
       "15-a","15-b",
       "17-a","17-b",
-      "101","102"
+      "101","102",
+      "SECRET CODE"
     ];
 
     if (!villa) {
@@ -142,7 +145,7 @@
     output.className = "status ok";
     output.innerText = "🚚 Route ready for Villa " + villa;
 
-    // show map only when valid
+    // show map
     mapBox.style.display = "block";
   }
 </script>
