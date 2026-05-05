@@ -1,25 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Community Delivery System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      background: #1e293b;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .card {
+      margin: 20px;
+      padding: 20px;
+      background: #1e293b;
+      border-radius: 12px;
+    }
+
+    .status {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .ok { color: #4ade80; }
+    .error { color: #f87171; }
+  </style>
+</head>
+
+<body>
+
+<header>
+  🚚 Community Delivery System
+</header>
+
+<div class="card">
+  <div class="status" id="output">Loading...</div>
+</div>
+
 <script>
   const params = new URLSearchParams(window.location.search);
-  const villa = params.get("villa");
+  let villa = params.get("villa");
 
   const output = document.getElementById("output");
 
-  const MIN_VILLA = 1;
-  const MAX_VILLA = 199;
+  const MIN = 1;
+  const MAX = 199;
 
+  // 🧠 Step 1: No input
   if (!villa) {
-    output.innerText = "No villa selected 🚪";
-  } 
-  else if (!/^\d+$/.test(villa)) {
-    output.innerText = "❌ Invalid villa format";
-  } 
-  else {
-    const num = Number(villa);
+    output.className = "status error";
+    output.innerText = "❌ No villa selected";
+  }
 
-    if (num < MIN_VILLA || num > MAX_VILLA) {
+  // 🧠 Step 2: Must be ONLY numbers (no letters/symbols)
+  else if (!/^[0-9]+$/.test(villa)) {
+    output.className = "status error";
+    output.innerText = "❌ Invalid format (numbers only)";
+  }
+
+  else {
+    villa = Number(villa);
+
+    // 🧠 Step 3: Range check
+    if (villa < MIN || villa > MAX) {
+      output.className = "status error";
       output.innerText = "❌ Villa does not exist";
-    } else {
-      output.innerText = "🚚 Route ready for Villa " + num;
+    }
+
+    else {
+      output.className = "status ok";
+      output.innerText = "🚚 Route ready for Villa " + villa;
     }
   }
 </script>
+
+</body>
+</html>
