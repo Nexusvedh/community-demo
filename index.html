@@ -1,131 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Libdom Villas Navigation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0f172a;
-      color: white;
-      text-align: center;
-    }
-
-    header {
-      background: #1e293b;
-      padding: 15px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    /* 🖼️ HERO IMAGE */
-    .hero {
-      width: 100%;
-      max-height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .container {
-      padding: 15px;
-    }
-
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      margin-top: 15px;
-      border-radius: 12px;
-    }
-
-    input {
-      width: 85%;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    button {
-      width: 90%;
-      padding: 12px;
-      margin-top: 15px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      background: #3b82f6;
-      color: white;
-      cursor: pointer;
-    }
-
-    .status {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    .error { color: #f87171; }
-    .ok { color: #4ade80; }
-
-    /* 🗺️ MAP BOX */
-    #mapBox {
-      display: none;
-      margin-top: 20px;
-    }
-
-    #mapBox img {
-      width: 100%;
-      border-radius: 10px;
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  🏠 Libdom Villas Navigation System
-</header>
-
-<!-- 🖼️ HERO IMAGE -->
-<img class="hero" src="homelib.jpg" alt="Libdom Villas">
-
-<div class="container">
-
-  <!-- INPUT CARD -->
-  <div class="card">
-
-    <h3>Enter Villa Number</h3>
-
-    <input id="villaInput" placeholder="e.g. 17-a, 15-b, 101" />
-
-    <button onclick="checkVilla()">Find Route</button>
-
-    <div id="output" class="status"></div>
-
-  </div>
-
-  <!-- 🗺️ MAP -->
-  <div id="mapBox">
-    <h3>Navigation Map</h3>
-    <img src="libdom.jpg" alt="Map">
-  </div>
-
-</div>
-
-<!-- 🧠 SCRIPT -->
 <script>
   function checkVilla() {
-    const villa = document.getElementById("villaInput").value.trim();
+    let villa = document.getElementById("villaInput").value.trim();
     const output = document.getElementById("output");
     const mapBox = document.getElementById("mapBox");
 
+    // 🧠 normalize input
+    villa = villa.toUpperCase().replace(/\s+/g, "");
+
     const validVillas = [
-      "1","2","3",
-      "15-a","15-b",
-      "17-a","17-b",
-      "101","102",
-      "SECRET CODE"
+      "1","2","3","4","5","6","7","8","9","10",
+      "11","12","13","14","15","16","17","17/A","17/B","17/C","17/D",
+      "18","19","20","21","22","23","24","25","26","27","28","29","30",
+      "31","32","33","34","35","36","37","38","39","40",
+      "41","42","43","44","45","46","47","48","49","50",
+      "51","52","53","54","55","56","57","58","59","60",
+      "61","62","63","64","65","66","67","68","69","70",
+      "71","72","73","74","75","76","77","78","79","80",
+      "81","82","83","84/85","86","87","88","89","90",
+      "91","92","93","94","95","96","97","98","99","100",
+      "101","102","103","104","105","106","107","108","108/A","109",
+      "110","111","112","113","114","115","116","117/118","119","120",
+      "121","121/A","122","123","124","125","126","127","128","129","130",
+      "131","132","133","134","135","136","137","138","139","140",
+      "141","142","143","144","145","146","147","148","149","150",
+      "151","152","153","154","155","156","157","158","159","160",
+      "161","162","163","164","165","166","167","168","169","170",
+      "171","172","173","174","175","176","177","178","179","180",
+      "181","182","183","184","185","186","187","188"
     ];
 
     if (!villa) {
@@ -147,9 +48,5 @@
 
     // show map
     mapBox.style.display = "block";
-
   }
 </script>
-
-</body>
-</html>
